@@ -22,7 +22,7 @@ A CXPlain model consists of four main components:
 
 After configuring these four components, you can fit a CXPlain instance to the same training data that was used to train your original model. The CXPlain instance can then explain any prediction of your explained model - even when no labels are available for that sample.
 
-```
+```python
 from tensorflow.python.keras.losses import categorical_crossentropy
 from cxplain import MLPModelBuilder, ZeroMasking, CXPlain
 
