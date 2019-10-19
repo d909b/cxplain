@@ -20,7 +20,7 @@ A CXPlain model consists of four main components:
 - The masking operation that defines how CXPlain will internally simulate the removal of input features from the set of available features.
 - The loss function that defines how the change in prediction accuracy incurred by removing an input feature will be measured by CXPlain.
 
-After definition of these four components, you can fit a CXPlain instance to the same training data that was used to train your original model. The CXPlain instance can then explain any prediction of your explained model - even when no labels are available for that sample.
+After configuring these four components, you can fit a CXPlain instance to the same training data that was used to train your original model. The CXPlain instance can then explain any prediction of your explained model - even when no labels are available for that sample.
 
 ```
 from tensorflow.python.keras.losses import categorical_crossentropy
@@ -60,8 +60,7 @@ More practical examples for various input data modalities, including images, tex
 
 ![MNIST](http://schwabpatrick.com/img/mnist_samples.png)
 ![ImageNet](http://schwabpatrick.com/img/imagenet_samples.png)
-![Twitter](http://schwabpatrick.com/img/twitter_samples.png)
-
+<img src="http://schwabpatrick.com/img/twitter_samples.png" width="310">
 ## Cite
 
 Please consider citing, if you reference or use our methodology, code or results in your work:
