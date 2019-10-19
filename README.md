@@ -2,7 +2,7 @@
 
 ![Code Coverage](https://img.shields.io/badge/Coverage-88%25-green)
 
-Causal Explanations (CXPlain) is a machine-learning method for explaining the decisions of any machine-learning model. CXPlain uses explanation models trained with a causal objective to learn to explain machine-learning models. CXPlain can also quantify the uncertainty of its explanations. This repository contains a reference implementation for neural explanation models, and several practical examples for different data modalities. Please see the manuscript at http://arxiv.org/abs/xxxx.xxxx (NeurIPS 2019) for a description and experimental evaluation of CXPlain.
+Causal Explanations (CXPlain) is a machine-learning method for explaining the decisions of any machine-learning model. CXPlain uses explanation models trained with a causal objective to learn to explain machine-learning models, and to quantify the uncertainty of its explanations. This repository contains a reference implementation for neural explanation models, and several practical examples for different data modalities. Please see the manuscript at http://arxiv.org/abs/xxxx.xxxx (NeurIPS 2019) for a description and experimental evaluation of CXPlain.
 
 ## Install
 
