@@ -56,7 +56,7 @@ More practical examples for various input data modalities, including images, tex
 - [Classification task on image data (CIFAR10)](examples/cifar10.ipynb)
 - [Classification task on image data (MNIST)](examples/mnist.ipynb)
 - [Classification task on textual data (IMDB)](examples/nlp.ipynb)
-- [Saving and loading CXPlain instances](examples/nlp.ipynb)
+- [Saving and loading CXPlain instances](examples/save_and_load.ipynb)
 
 ![MNIST](http://schwabpatrick.com/img/mnist_samples.png)
 ![ImageNet](http://schwabpatrick.com/img/imagenet_samples.png)
