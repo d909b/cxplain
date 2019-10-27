@@ -9,7 +9,7 @@ Causal Explanations (CXPlain) is a method for explaining the decisions of any ma
 To install the latest release:
 
 ```
-$ pip install git+:https://github.com/d909b/cxplain
+$ pip install git+https://github.com/d909b/cxplain
 ```
 
 ## Use
