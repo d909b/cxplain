@@ -283,7 +283,7 @@ class TensorflowCXPlain(CXPlain):
         if os.path.exists(config_file_path) and not overwrite:
             raise ValueError(already_exists_exception_message.format(config_file_path))
         else:
-            with open(config_file_path, "wb") as fp:
+            with open(config_file_path, "w") as fp:
                 json.dump(self.get_config(directory_path, custom_model_saver), fp)
 
         if self.prediction_model is not None:
@@ -361,16 +361,16 @@ class TensorflowCXPlain(CXPlain):
         """
         config_file_name = CXPlain.get_config_file_name()
         config_file_path = os.path.join(directory_path, config_file_name)
-        with open(config_file_path, "rb") as fp:
+        with open(config_file_path, "r") as fp:
             config = json.load(fp)
 
-        with open(config["model_builder"]) as model_builder_fp:
+        with open(config["model_builder"], "rb") as model_builder_fp:
             model_builder = pickle.load(model_builder_fp)
 
-        with open(config["masking_operation"]) as masking_operation_fp:
+        with open(config["masking_operation"], "rb") as masking_operation_fp:
             masking_operation = pickle.load(masking_operation_fp)
 
-        with open(config["loss"]) as loss_fp:
+        with open(config["loss"], "rb") as loss_fp:
             loss = pickle.load(loss_fp)
 
         downsample_factors = config["downsample_factors"]

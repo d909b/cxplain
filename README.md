@@ -1,6 +1,6 @@
 ![CXPlain](http://schwabpatrick.com/img/cxplain_logo.png)
 
-![Code Coverage](https://img.shields.io/badge/Coverage-88%25-green)
+![Code Coverage](https://img.shields.io/badge/Python-2.7,%203.7-blue)![Code Coverage](https://img.shields.io/badge/Coverage-88%25-green)
 
 Causal Explanations (CXPlain) is a method for explaining the decisions of any machine-learning model. CXPlain uses explanation models trained with a causal objective to learn to explain machine-learning models, and to quantify the uncertainty of its explanations. This repository contains a reference implementation for neural explanation models, and several practical examples for different data modalities. Please see the manuscript at https://arxiv.org/abs/1910.12336 (NeurIPS 2019) for a description and experimental evaluation of CXPlain.
 
@@ -9,7 +9,7 @@ Causal Explanations (CXPlain) is a method for explaining the decisions of any ma
 To install the latest release:
 
 ```
-$ pip install git+https://github.com/d909b/cxplain
+$ pip install cxplain
 ```
 
 ## Use

@@ -20,23 +20,30 @@ from setuptools import find_packages
 
 setup(
     name='cxplain',
-    version='1.0.0',
+    version='1.0.1',
     packages=find_packages(),
-    url='schwabpatrick.com',
+    url='http://schwabpatrick.com',
     author='Patrick Schwab',
     author_email='patrick.schwab@hest.ethz.ch',
-    license=open('LICENSE.txt').read(),
+    license="MIT License",
     long_description=open('README.md').read(),
+    long_description_content_type="text/markdown",
     install_requires=[
         "six >= 1.11.0",
         "scikit-learn >= 0.19.0",
         "numpy >= 1.14.5",
-        "scipy",
-        "matplotlib",
+        "scipy"
+    ],
+    tests_require=[
         "nose"
     ],
     extra_packages={
+        "matplotlib": ["matplotlib"],
         "tensorflow": ["tensorflow>=1.14.0"],
         "tensorflow_gpu": ["tensorflow-gpu>=1.14.0"]
-    }
+    },
+    classifiers=[
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ]
 )

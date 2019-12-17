@@ -41,7 +41,7 @@ class MaskingUtil(object):
             # Upsample the attention weights to match the input dimension.
             num_indices, steps = MaskingUtil.get_num_indices(image_shape, downsample_factors)
         else:
-            has_variable_dimension = np.any(map(lambda x: x is None, image_shape))
+            has_variable_dimension = np.any(list(map(lambda x: x is None, image_shape)))
             if has_variable_dimension:
                 num_indices = None
             else:

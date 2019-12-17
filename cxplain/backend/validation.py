@@ -74,7 +74,7 @@ class Validation(object):
         if depth == 0:
             return len(outer_x) == target_len
         else:
-            return map(lambda child: Validation.get_at_level(target_len, child, depth - 1), outer_x)
+            return list(map(lambda child: Validation.get_at_level(target_len, child, depth - 1), outer_x))
 
     @staticmethod
     def get_input_dimension(X):
@@ -152,5 +152,6 @@ class Validation(object):
     @staticmethod
     def is_variable_length(x):
         is_var_len = (isinstance(x, np.ndarray) and len(x) > 0 and len(x.shape) == 1 and len(x[0]) > 1) or \
-                     (isinstance(x, list) and len(x) > 0 and not np.allclose(map(len, x), len(x[0]), rtol=0, atol=0))
+                     (isinstance(x, list) and len(x) > 0 and
+                      not np.allclose(list(map(len, x)), len(x[0]), rtol=0, atol=0))
         return is_var_len

@@ -298,7 +298,7 @@ class TestExplanationModel(unittest.TestCase):
     def make_at_tmp(file_name):
         tmp_dir = tempfile.mkdtemp()
         file_path = join(tmp_dir, file_name)
-        with open(file_path, "wb") as fp:
+        with open(file_path, "w") as fp:
             fp.writelines("empty\n")
         return tmp_dir
 

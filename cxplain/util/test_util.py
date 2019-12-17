@@ -43,9 +43,9 @@ class TestUtil(object):
 
     @staticmethod
     def split_auxiliary_outputs_on_feature_dim(all_but_one_auxiliary_outputs):
-        return map(np.squeeze, np.split(all_but_one_auxiliary_outputs,
-                                        all_but_one_auxiliary_outputs.shape[1],
-                                        axis=1))
+        return list(map(np.squeeze, np.split(all_but_one_auxiliary_outputs,
+                                             all_but_one_auxiliary_outputs.shape[1],
+                                             axis=1)))
 
     @staticmethod
     def get_boston_housing(x_scaler=StandardScaler(), y_scaler=StandardScaler()):
@@ -124,7 +124,7 @@ class TestUtil(object):
         return [id_to_word[idx] for idx in indices]
 
     @staticmethod
-    def get_mnist(flattened=False, num_subsamples=None, classes=None):
+    def get_mnist(flattened=False, num_subsamples=None):
         (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
 
         x_train, x_test = x_train.astype(float), x_test.astype(float)
@@ -141,9 +141,6 @@ class TestUtil(object):
 
         x_train = np.expand_dims(x_train, axis=-1)
         x_test = np.expand_dims(x_test, axis=-1)
-
-        if classes is not None:
-            1
 
         y_train = tf.keras.utils.to_categorical(y_train, num_classes=10)
         y_test = tf.keras.utils.to_categorical(y_test, num_classes=10)

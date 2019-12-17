@@ -48,6 +48,6 @@ class ZeroMasking(BaseMasking):
 
             all_outputs.append((x, y_pred, all_y_pred_imputed))
 
-        all_outputs = [np.concatenate(map(partial(lambda x, dim: x[dim], dim=dim), all_outputs))
+        all_outputs = [np.concatenate(list(map(partial(lambda x, dim: x[dim], dim=dim), all_outputs)))
                        for dim in range(len(all_outputs[0]))]
         return all_outputs
