@@ -147,11 +147,11 @@ class BaseModelBuilder(object):
         losses = main_losses
 
         if optimizer == "rmsprop":
-            opt = tf.train.RMSPropOptimizer(learning_rate=learning_rate)
+            opt = tf.compat.v1.train.RMSPropOptimizer(learning_rate=learning_rate)
         elif optimizer == "sgd":
-            opt = tf.train.MomentumOptimizer(learning_rate=learning_rate, use_nesterov=True, momentum=0.9)
+            opt = tf.compat.v1.train.MomentumOptimizer(learning_rate=learning_rate, use_nesterov=True, momentum=0.9)
         else:
-            opt = tf.train.AdamOptimizer(learning_rate=learning_rate)
+            opt = tf.compat.v1.train.AdamOptimizer(learning_rate=learning_rate)
 
         model.compile(loss=losses,
                       loss_weights=loss_weights,
