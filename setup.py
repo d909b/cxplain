@@ -20,7 +20,7 @@ from setuptools import find_packages
 
 setup(
     name='cxplain',
-    version='1.0.1',
+    version='1.0.2',
     packages=find_packages(),
     url='http://schwabpatrick.com',
     author='Patrick Schwab',
