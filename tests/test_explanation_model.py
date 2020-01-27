@@ -25,9 +25,10 @@ from os.path import join
 from sklearn.pipeline import Pipeline
 from cxplain.util.test_util import TestUtil
 from sklearn.neural_network import MLPClassifier
-from tensorflow.python.keras.layers import Input
+from tensorflow.python.keras.models import Model
 from cxplain.util.count_vectoriser import CountVectoriser
 from sklearn.feature_extraction.text import TfidfTransformer
+from tensorflow.python.keras.layers import Input, Dense, Flatten
 from tensorflow.python.keras.preprocessing.sequence import pad_sequences
 from sklearn.ensemble.forest import RandomForestRegressor, RandomForestClassifier
 from tensorflow.python.keras.losses import categorical_crossentropy, mean_squared_error, binary_crossentropy
@@ -149,6 +150,41 @@ class TestExplanationModel(unittest.TestCase):
 
             explainer = CXPlain(explained_model, model_builder, masking_operation, loss,
                                 downsample_factors=downsample_factor, flatten_for_explained_model=True)
+
+            explainer.fit(x_train, y_train)
+            eval_score = explainer.score(x_test, y_test)
+            train_score = explainer.get_last_fit_score()
+            median = explainer.predict(x_test)
+            self.assertTrue(median.shape == x_test.shape)
+
+    def test_mnist_unet_with_shape_valid(self):
+        num_subsamples = 100
+        (x_train, y_train), (x_test, y_test) = TestUtil.get_mnist(flattened=False, num_subsamples=num_subsamples)
+
+        explained_model_builder = MLPModelBuilder(num_layers=2, num_units=64, activation="relu", p_dropout=0.2,
+                                                  verbose=0, batch_size=256, learning_rate=0.001, num_epochs=2,
+                                                  early_stopping_patience=128)
+        input_shape = x_train.shape[1:]
+        input_layer = Input(shape=input_shape)
+        last_layer = Flatten()(input_layer)
+        last_layer = explained_model_builder.build(last_layer)
+        last_layer = Dense(y_train.shape[-1], activation="softmax")(last_layer)
+        explained_model = Model(input_layer, last_layer)
+        explained_model.compile(loss="categorical_crossentropy",
+                                optimizer="adam")
+        explained_model.fit(x_train, y_train)
+        masking_operation = ZeroMasking()
+        loss = categorical_crossentropy
+
+        downsample_factors = [(2, 2), (4, 4), (4, 7), (7, 4), (7, 7)]
+        with_bns = [True if i % 2 == 0 else False for i in range(len(downsample_factors))]
+        for downsample_factor, with_bn in zip(downsample_factors, with_bns):
+            model_builder = UNetModelBuilder(downsample_factor, num_layers=2, num_units=64, activation="relu",
+                                             p_dropout=0.2, verbose=0, batch_size=256, learning_rate=0.001,
+                                             num_epochs=2, early_stopping_patience=128, with_bn=with_bn)
+
+            explainer = CXPlain(explained_model, model_builder, masking_operation, loss,
+                                downsample_factors=downsample_factor)
 
             explainer.fit(x_train, y_train)
             eval_score = explainer.score(x_test, y_test)

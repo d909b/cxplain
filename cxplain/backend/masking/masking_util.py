@@ -186,9 +186,6 @@ class MaskingUtil(object):
                                                   math_ops.expand_dims(math_ops.cast(inverted_mask, float),
                                                                        axis=-1))
 
-                    # Transform to target shape = (num_samples, num_transformed_features).
-                    x_imputed = math_ops.reshape(x_imputed, target_shape)
-
                 return x_imputed
 
             current_x_imputed = predict_with_i_imputed(x, index=i)
